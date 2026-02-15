@@ -75,50 +75,31 @@ while running:
 
     # Move logic
     move = ['up', 'down', 'left', 'right']
-    invalid_move = True
     direction = ''
 
-    while invalid_move:
-        # Exploration
-        if random.random() < epsilon:
-            direction = random.choice(move)
-        # Exploitation
-        else:
-            max_vals = max(q_table[(agent_row, agent_col)].values())
-            max_keys = [key for key, value in q_table[(agent_row, agent_col)].items() if value == max_vals]
-            direction = random.choice(max_keys)
-
-        # Left wall
-        if agent_col - 1 < 0 and direction == 'left':
-            pass
-        # Right wall
-        elif agent_col + 1 > size - 1 and direction == 'right':
-            pass
-        # Upper wall
-        elif agent_row - 1 < 0 and direction == 'up':
-            pass
-        # Bottom wall
-        elif agent_row + 1 > size - 1 and direction == 'down':
-            pass
-        else:
-            invalid_move = False
+    # Exploration
+    if random.random() < epsilon:
+        direction = random.choice(move)
+    # Exploitation
+    else:
+        max_vals = max(q_table[(agent_row, agent_col)].values())
+        max_keys = [key for key, value in q_table[(agent_row, agent_col)].items() if value == max_vals]
+        direction = random.choice(max_keys)
 
     # Save previous position
     old_row, old_col = agent_row, agent_col
 
     # Update agent
     if direction == 'left':
-        agent_col -= 1
-        current_step += 1
+        agent_col = max(0, agent_col - 1)
     elif direction == 'right':
-        agent_col += 1
-        current_step += 1
+        agent_col = min(size - 1, agent_col + 1)
     elif direction == 'up':
-        agent_row -= 1
-        current_step += 1
+        agent_row = max(agent_row - 1, 0)
     elif direction == 'down':
-        agent_row += 1
-        current_step += 1
+        agent_row = min(agent_row + 1, size - 1)
+
+    current_step += 1
 
     # Reward count
     # Lava
@@ -168,12 +149,12 @@ while running:
                 # Obstacle
                 pygame.draw.rect(screen, (250, 104, 104), pygame.Rect(100 + 20 * k, 100 + 20 * i, 20, 20))
 
-    # Get all Q-values
-    all_q_values = [value for actions in q_table.values() for value in actions.values()]
+    # Get max State-Value
+    state_values = [max(actions.values()) for actions in q_table.values()]
 
     # Get global min and max
-    global_min = min(all_q_values)
-    global_max = max(all_q_values)
+    global_min = min(state_values)
+    global_max = max(state_values)
 
     # Render State-Value Heatmap
     for i in range(size):
@@ -201,18 +182,9 @@ while running:
     pygame.display.flip()
 
     # Teleport back
-    # Lava
-    if matrix[agent_row][agent_col] == 2:
-        episode += 1
-        steps.append(current_step)
-        reward.append(q_sum)
-        current_step = 0
-        q_sum = 0
-        epsilon = epsilon * decay_rate
-        agent_row, agent_col = size - 1, size - 1
-    # End point
-    elif matrix[agent_row][agent_col] == 1:
-        pygame.time.delay(2000)
+    if matrix[agent_row][agent_col] != 0:
+        if matrix[agent_row][agent_col] == 1:
+            pygame.time.delay(2000)
         episode += 1
         steps.append(current_step)
         reward.append(q_sum)
