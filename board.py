@@ -66,7 +66,7 @@ q_sum = 0
 
 # Game loop
 running = True
-while running:
+while running and episode <= 2000:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -107,7 +107,7 @@ while running:
         q_val = -1
     # End point
     elif matrix[agent_row][agent_col] == 1:
-        q_val = 100
+        q_val = 1000
     # Path
     elif matrix[agent_row][agent_col] == 0:
         q_val = -0.1
@@ -183,8 +183,8 @@ while running:
 
     # Teleport back
     if matrix[agent_row][agent_col] != 0:
-        if matrix[agent_row][agent_col] == 1:
-            pygame.time.delay(2000)
+        # if matrix[agent_row][agent_col] == 1:
+        #     pygame.time.delay(2000)
         episode += 1
         steps.append(current_step)
         reward.append(q_sum)
