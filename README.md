@@ -22,7 +22,7 @@ Documenting a few takeaways from building this:
 
 > The final heatmap reflects the agent's understanding of the maze. It avoids the central obstacle zone entirely and sticks to the outer walls to minimize risk.
 
-<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/49cdcf76-3998-4122-8741-2385512c91cc" />
+<img width="1920" height="1003" alt="Record" src="https://github.com/user-attachments/assets/15b36120-131e-4bb3-88d3-70365feac572" />
 
 > The charts track the learning progress. The step count starts high and chaotic, but eventually flattens out into a straight line once the safest path is memorized.
 
