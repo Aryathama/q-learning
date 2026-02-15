@@ -20,7 +20,7 @@ Documenting a few takeaways from building this:
 
 **1. The Learning Phase (Heatmap Evolution)**
 
-<img width="1653" height="826" alt="Learning" src="https://github.com/user-attachments/assets/37347532-af77-4edd-9d6a-163b165cd75a" />
+<img width="1653" height="826" alt="Learning" src="https://github.com/user-attachments/assets/4cb78170-3318-49ab-9d1a-d6f2e4e98a48" />
 
 > In the early episodes, the agent is still learning the layout. The heatmap shows fragmented paths as it explores the maze through trial and error.
 
