@@ -18,9 +18,19 @@ Documenting a few takeaways from building this:
 
 ### The Results
 
-*(Image soon!)*
+**1. The Learning Phase (Heatmap Evolution)**
 
-> The final heatmap reflects the agent's understanding of the maze. It avoids the central obstacle zone entirely and sticks to the outer walls to minimize risk.
+<img width="1637" height="826" alt="Learning" src="https://github.com/user-attachments/assets/9f2e36a6-aec1-4dce-b7d1-ad0afd998d72" />
+
+> In the early episodes, the agent is still learning the layout. The heatmap shows fragmented paths as it explores the maze through trial and error.
+
+**2. The Final Understanding (Convergence)**
+
+<img width="1637" height="826" alt="Final" src="https://github.com/user-attachments/assets/3cea6eee-e373-43ca-a8f6-463f014ef149" />
+
+> The final heatmap reflects the agent's understanding of the maze. It establishes a primary safe route along the outer walls while also mapping efficient shortcuts through the central gaps.
+
+**3. Convergence Analytics**
 
 <img width="1920" height="1003" alt="Record" src="https://github.com/user-attachments/assets/15b36120-131e-4bb3-88d3-70365feac572" />
 
